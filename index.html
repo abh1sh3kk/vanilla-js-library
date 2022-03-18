@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Library</title>
+  </head>
+  <body>
+    <div class="formContainer">
+      <div class="form-headline">
+        <h1 class="addNewBook">Add New Book</h1>
+      </div>
+      <div class="form-content">
+        <div class="bookName label-input">
+          <label for="bookName">Name of Book</label>
+          <input type="text" id="bookName" class="input" />
+        </div>
+        <div class="author label-input">
+          <label for="author">Name of Author</label>
+          <input type="text" id="bookName" class="input" />
+        </div>
+        <div class="totalPages label-input">
+          <label for="totalPages">Total no. of pages</label>
+          <input type="number" id="totalPages" class="input" />
+        </div>
+        <div class="pagesCompleted label-input">
+          <label for="pagesCompleted">Pages completed</label>
+          <input type="number" id="pagesCompleted" class="input" />
+        </div>
+        <div class="buttons">
+          <button class="button submit form-button" type="submit">
+            Submit
+          </button>
+          <button class="button cancel form-button" type="cancel">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="section-header">
+        <h1 class="headline">LIBRARY</h1>
+        <button class="button signIn">Sign In</button>
+      </div>
+      <div class="section-content">
+	      <div class="card-container">
+		      <div class="card1 card">
+				<div class="card-header">
+					<div class="edit">Edit</div>
+					<div class="remove">Remove</div>
+				</div>
+				<div class="card-content">
+					<div class="book-name">Science book</div>
+					<div class="author-name">Abhishek Acharya</div>
+				</div>
+				<card class="card-footer">
+					<div class="read-pages">34</div>
+					<div class="total-pages">100</div>
+				</card>
+		      </div>
+		      <div class="card1 card">
+				<div class="card-header">
+					<div class="edit">Edit</div>
+					<div class="remove">Remove</div>
+				</div>
+				<div class="card-content">
+					<div class="book-name">Science book</div>
+					<div class="author-name">Abhishek Acharya</div>
+				</div>
+				<card class="card-footer">
+					<div class="read-pages">34</div>
+					<div class="total-pages">100</div>
+				</card>
+		      </div>
+		      <div class="card1 card">
+				<div class="card-header">
+					<div class="edit">Edit</div>
+					<div class="remove">Remove</div>
+				</div>
+				<div class="card-content">
+					<div class="book-name">Science book</div>
+					<div class="author-name">Abhishek Acharya</div>
+				</div>
+				<card class="card-footer">
+					<div class="read-pages">34</div>
+					<div class="total-pages">100</div>
+				</card>
+		      </div>
+	      </div>
+      </div>
+      <div class="section-info">
+        <button class="button addBook">+</button>
+      </div>
+    </div>
+  </body>
+</html>
