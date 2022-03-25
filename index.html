@@ -9,29 +9,34 @@
     <title>Library</title>
   </head>
   <body>
-    <div class="formContainer">
+
+
+    <!-- ##################### FORM #################################### -->
+    
+
+    <form class="formContainer" id="myForm" >
       <div class="form-headline">
         <h1 class="addNewBook">Add New Book</h1>
       </div>
       <div class="form-content">
-        <div class="bookName label-input">
+        <div class="book label-input">
           <label for="bookName">Name of Book</label>
-          <input type="text" id="bookName" class="input" />
+          <input type="text" name="bookName" id="bookName" class="input bookName" required />
         </div>
         <div class="author label-input">
           <label for="author">Name of Author</label>
-          <input type="text" id="bookName" class="input" />
+          <input type="text" name="authorName" id="authorName" class="input bookAuthor" required/>
         </div>
-        <div class="totalPages label-input">
+        <div class="pages-total label-input">
           <label for="totalPages">Total no. of pages</label>
-          <input type="number" id="totalPages" class="input" />
+          <input type="number" name="totalPages" id="totalPages" class="input totalPages" required/>
         </div>
-        <div class="pagesCompleted label-input">
+        <div class="completed-pages label-input">
           <label for="pagesCompleted">Pages completed</label>
-          <input type="number" id="pagesCompleted" class="input" />
+          <input type="number" name="pagesCompleted" id="pagesCompleted" class="input pagesCompleted" />
         </div>
         <div class="buttons">
-          <button class="button submit form-button" type="submit">
+          <button class="button submit form-button" type="">
             Submit
           </button>
           <button class="button cancel form-button" type="cancel">
@@ -39,19 +44,78 @@
           </button>
         </div>
       </div>
-    </div>
+    </form>
+
+
+    <!-- ##################### FORM #################################### -->
+
+
     <div class="container">
+
+
       <div class="section-header">
         <h1 class="headline">LIBRARY</h1>
         <button class="button signIn">Sign In</button>
       </div>
+
+
       <div class="section-content">
 	      <div class="card-container">
-		      <div class="card1 card">
-				<div class="card-header">
+
+        <!-- -------------- CARD 1 ------------------- -->
+        <div class="card1 card">
+           <!-- header part -->
+          <!-- <div class="card-header">
+            <div class="edit">Edit</div>
+            <div class="remove">Remove</div>
+          </div> -->
+          <!-- content part -->
+          <div class="card-content">
+            <div class="book-name">Science book</div>
+            <div class="author-name">Abhishek Acharya</div>
+          </div>
+          <!-- footer part -->
+          <card class="card-footer">
+            <div class="read-pages">34</div>
+            <div class="total-pages">100</div>
+          </card>
+            </div>
+            <!-- -------------- CARD 1 ------------------- -->
+            
+            
+
+
+            <!-- -------------- CARD 2 ------------------- -->
+            <div class="card1 card">
+              <!-- header part -->
+              <!-- <div class="card-header">
 					<div class="edit">Edit</div>
 					<div class="remove">Remove</div>
+				</div> -->
+
+        <!-- content part -->
+				<div class="card-content">
+					<div class="book-name">Science book</div>
+					<div class="author-name">Abhishek Acharya</div>
 				</div>
+
+        <!-- footer part -->
+				<card class="card-footer">
+					<div class="read-pages">34</div>
+					<div class="total-pages">100</div>
+				</card>
+      </div>
+      <!-- -------------- CARD 2 ------------------- -->
+
+
+
+
+      <!-- -------------- CARD 3 ------------------- -->
+      <div class="card1 card">
+        <!-- <div class="card-header">
+					<div class="edit">Edit</div>
+					<div class="remove">Remove</div>
+				</div> -->
 				<div class="card-content">
 					<div class="book-name">Science book</div>
 					<div class="author-name">Abhishek Acharya</div>
@@ -60,40 +124,20 @@
 					<div class="read-pages">34</div>
 					<div class="total-pages">100</div>
 				</card>
-		      </div>
-		      <div class="card1 card">
-				<div class="card-header">
-					<div class="edit">Edit</div>
-					<div class="remove">Remove</div>
-				</div>
-				<div class="card-content">
-					<div class="book-name">Science book</div>
-					<div class="author-name">Abhishek Acharya</div>
-				</div>
-				<card class="card-footer">
-					<div class="read-pages">34</div>
-					<div class="total-pages">100</div>
-				</card>
-		      </div>
-		      <div class="card1 card">
-				<div class="card-header">
-					<div class="edit">Edit</div>
-					<div class="remove">Remove</div>
-				</div>
-				<div class="card-content">
-					<div class="book-name">Science book</div>
-					<div class="author-name">Abhishek Acharya</div>
-				</div>
-				<card class="card-footer">
-					<div class="read-pages">34</div>
-					<div class="total-pages">100</div>
-				</card>
-		      </div>
+			</div>
+      <!-- -------------- CARD 3 ------------------- -->
+      
+      
+      <!-- -------------- CARD + ------------------- -->
+			<button class="button addBook card">+</button>
+      <!-- -------------- CARD + ------------------- -->
 	      </div>
       </div>
+      
+
       <div class="section-info">
-        <button class="button addBook">+</button>
       </div>
     </div>
   </body>
 </html>
+
