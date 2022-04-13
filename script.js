@@ -1,5 +1,4 @@
 const plus = document.querySelector(".addBook"); 
-
 const form = document.querySelector(".formContainer");
 const cancelButton = document.querySelector(".cancel");
 const theForm = document.querySelector("form");
@@ -19,76 +18,88 @@ let cardContainer = document.querySelector(".card-container");
 
 // ***************************************************
 
-let bookList = []; 
+let bookList = JSON.parse(localStorage.getItem("bookData"));
 
-let book = {
-	name: "science",
-	author: "koi na koi",
-	tPages: "212", 
-	cPages: 300
-};
-cancelButton.addEventListener("click", function() {
-	form.setAttribute("style", "visibility: hidden");
-})
+renderCards();
+
+// Factory function
+function book(name, author, tPages, cPages) {
+	return {
+		name,
+		author,
+		tPages, 
+		cPages
+	}
+}
 
 plus.addEventListener("click", function() {
 	form.setAttribute("style", "visibility: visible");
 });
+
+cancelButton.addEventListener("click", function() {
+	form.setAttribute("style", "visibility: hidden");
+})
+
 submitButton.addEventListener("click", () => {
-	let book1 = Object.create(book);
-	
-	book1.name = bookName.value;
-	book1.author = bookAuthor.value;
-	book1.tPages = totalPages.value; 
-	book1.cPages = completedPages.value; 
-	
+	// getting value from form and making an object to push in bookList
+	let book1 = book(bookName.value, bookAuthor.value, totalPages.value, completedPages.value); 	
 	bookList.push(book1);
+	localStorage.setItem("bookData", JSON.stringify(bookList));
 	
 	console.clear();
 	console.log(book1);
 	
-	displayBookName.value = book1.name;
+	// cardGenerator(bookName.value, bookAuthor.value, totalPages.value, completedPages.value);
+	renderCards();
 	
-	console.log("submitted");
-	cardGenerator("How to make library in js", "- Abhishek Acharya", "6969", "69");
-
 	form.setAttribute("style", "visibility: hidden");
 });
 
+
+function renderCards() {
+	for(let i=0; i<bookList.length; i++) {
+		cardGenerator(bookList[i].name, bookList[i].author, bookList[i].tPages, bookList[i].cPages);
+	}
+}
+
 function cardGenerator(book, author, tPages, cPages) {
 
-	// create a card
+	// 1. create a card 
 	let newCard = document.createElement("div");
 	cardContainer.insertBefore(newCard,plus);
 	newCard.classList.add("card");
 
-	// create content part 
+
+	// 2. create content part 
 	let newCardContent = document.createElement("div");
 	newCard.appendChild(newCardContent);
 	newCardContent.classList.add("card-content");
 
-	// create book and author name section
+
+	// 3. create footer
+	let newCardFooter = document.createElement("div");
+	newCard.appendChild(newCardFooter);
+	newCardFooter.classList.add("card-footer");
+
+
+	// 4. create book and author name section
 	let newCardBookName = document.createElement("div");
 	let newCardAuthorName = document.createElement("div");
-
-	// adding class to book and author
-	newCardBookName.classList.add("book-name");
-	newCardAuthorName.classList.add("author-name");
 
 	// appending them inside card 
 	newCardContent.appendChild(newCardBookName);
 	newCardContent.appendChild(newCardAuthorName);
 
+	// adding class to book and author
+	newCardBookName.classList.add("book-name");
+	newCardAuthorName.classList.add("author-name");
+
+
 	// to update their value
 	newCardBookName.textContent = book;
 	newCardAuthorName.textContent = author;
 
-	// create footer
-	let newCardFooter = document.createElement("div");
-	newCard.appendChild(newCardFooter);
-	newCardFooter.classList.add("card-footer");
-
-	// creating total and completed pages
+	// 5. creating total and completed pages
 	let newCardTotalPages = document.createElement("div");
 	let newCardCompletedPages = document.createElement("div");
 
@@ -103,26 +114,4 @@ function cardGenerator(book, author, tPages, cPages) {
 	// adding content
 	newCardTotalPages.textContent = tPages;
 	newCardCompletedPages.textContent = cPages;
-
-
-	
-
-
-	
-
-
-
-
-
-}
-
-
-
-
-
-	
-// let randomPage = Math.floor(Math.random() * 500);
-//Assigning the input in object
-// book1.name = `Book No. ${randomPage}`;
-// book1.pages = randomPage;
-
+}	
