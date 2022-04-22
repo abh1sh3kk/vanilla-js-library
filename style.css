@@ -2,7 +2,7 @@
 
 
 :root {
-  --form-background-color: #f04;
+  --form-background-color: rgb(0,0,0,91%);
   --form-text-color: white;
   --form-button-background-color: #f04;
   --form-button-text-color: white;
@@ -87,21 +87,35 @@ body {
 	height: auto;
 	width: 36vw;
 	margin: 25vh 32vw;
-	padding: 1rem;
 	border-radius: 1.5rem;
 
   z-index: 4;
   
 	box-shadow: 0px 0px 5px black;
 }
+.pages-number-form {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.form-headline, .form-footer{
+  /* margin: 0.2rem 0 0.4rem 0; */
+  background-color: rgb(0, 11, 67, 76%);
+  padding: 0.5rem;
+}
 .form-headline {
-  margin: 0.2rem 0 0.4rem 0;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+.form-footer {
+  border-radius: 0 0 1.5rem 1.5rem;
 }
 .form-content {
   display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
+  padding: 2.0rem;
+  font-size: 1.2rem;
 }
 .addNewBook {
   font-size: 2rem;
@@ -111,22 +125,44 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+	margin: 0.5rem;
+}
+input[type=number]::-webkit-inner-spin-button{
+  opacity: 0;
+  color: red;
+  font-size: 2rem;
 }
 .input {
   width: 60%;
 	padding: 0.4rem 0.4rem 0.2rem 0;
 	background-color: transparent;
+  color: var(--form-text-color);
 	border: none;
 	border-bottom: 2px solid var(--form-text-color);
+  margin-block: 0.4rem;
 }
 .input:focus {
   outline: none;
 }
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+} */
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 .form-button {
   background-color: transparent;
 	color: var(--form-button-text-color);
-	border: none;
 	margin: 0.6rem 0.2rem 0.4rem 0;
+  border: 1.5px solid white;
+}
+.buttons {
+  display: flex;
+  justify-content: space-around;
 }
 .form-button:hover {
   background-color: var(--form-button-background-color-hover);
@@ -254,8 +290,11 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+.read-pages:after {
+ content: "\a0";
+}
 .total-pages:before {
-  content: " pages of ";
+  content: "pages of\a0";
 }
 
 
