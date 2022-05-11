@@ -38,6 +38,10 @@ body {
   font-family: 'Inter', sans-serif;
   height: 100vh;
 }
+
+
+
+
 /* ****************************** GRID SETUP ********************************************* */
 .container {
   display: grid;
@@ -65,11 +69,14 @@ body {
 
 .card-container {
   display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 	grid-template-rows: repeat(auto-fill, 1fr);
-	justify-content: center;
+	place-items: center;
+  gap: 0.5rem;
 }
 /* ****************************** GRID SETUP END ********************************************* */
+
+
 
 
 
@@ -171,11 +178,17 @@ input[type=number] {
 /* ******************************** FORM END ******************************************************* */
 
 
+
+
+
                                 /* MAIN CONTAINER */
   .container {
   height: 100%;
   }
                                 /* MAIN CONTAINER */
+
+
+
 
 /* ******************************** NAV BAR ******************************************************* */
 .section-header {
@@ -209,9 +222,6 @@ button {
   color: white;
   border: 2px solid white;
 }
-.section-content {
-  /* background-color: cyan; */
-}
 
 button:hover {
   background-color: cyan;
@@ -224,6 +234,10 @@ button:hover {
 }
 /* ******************************** NAV BAR END ******************************************************* */
 
+
+
+
+
 /* ******************************** CARDS  ******************************************************* */
 
 .section-content{
@@ -231,12 +245,14 @@ button:hover {
   background-color: white;
 }
 .card-container {
-  width: 100%;
+  
+  width: 98%;
 	height: 100%;
+  overflow-y: auto;
 }
 
 
-/* ******************************** one card   ******************************************************* */
+/* ******************************** unit card   ******************************************************* */
 .card {
   transition: width 0.5s ease-in-out;
 
@@ -246,10 +262,9 @@ button:hover {
   background-color: var(--card-background-color);
   color: var(--card-text-color);
 
-  height: clamp(14rem, 40%, 21rem);
-  /* width: clamp(10rem, 25vw, 15rem); */
-  /* height: 14rem;
-  width: 10rem; */
+  /* height: clamp(14rem, 40%, 21rem); */
+  min-height: 16rem; 
+  min-width: 14rem;
 
   font-size: 1.1rem;
 
@@ -322,7 +337,7 @@ button:hover {
 .addBook:active, .cancel:active {
   transform: scale(0.9);
 }
-/* ******************************** one card   ******************************************************* */
+/* ******************************** unit card end   ******************************************************* */
 
 
 
@@ -346,6 +361,8 @@ button:hover {
 
 
 /* ******************************** CARDS  ******************************************************* */
+
+
 
 
 /* ******************************** SIDEBAR  ******************************************************* */
@@ -393,23 +410,8 @@ button:hover {
 /* ******************************** SIDEBAR  ******************************************************* */
 
 
+
+
 @media screen and (max-width: 883px) {
-
-.container {
-  grid-template: repeat(8, 1fr) / repeat(4, 1fr);
   
-  grid-template-areas:
-  "header header header header"
-  "content content content content"
-  "content content content content"
-  "content content content content"
-  "content content content content"
-  "content content content content"
-  "content content content content"
-  "content content content content";
-}
-  .section-content {
-    width: 100%;
-  }
-
 }
