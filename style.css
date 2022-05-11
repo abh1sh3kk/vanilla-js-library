@@ -392,3 +392,24 @@ button:hover {
 }
 /* ******************************** SIDEBAR  ******************************************************* */
 
+
+@media screen and (max-width: 883px) {
+
+.container {
+  grid-template: repeat(8, 1fr) / repeat(4, 1fr);
+  
+  grid-template-areas:
+  "header header header header"
+  "content content content content"
+  "content content content content"
+  "content content content content"
+  "content content content content"
+  "content content content content"
+  "content content content content"
+  "content content content content";
+}
+  .section-content {
+    width: 100%;
+  }
+
+}
