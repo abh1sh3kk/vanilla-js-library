@@ -44,18 +44,19 @@ function book(name, author, tPages, cPages) {
 
 function renderCards() {
 	bookList = JSON.parse(localStorage.getItem("bookList"));
-
-	console.log(typeof bookList);
-	
 	clearCards();
-	for(let i=0; i<bookList.length; i++) {
-		cardGenerator(bookList[i].name, bookList[i].author, bookList[i].tPages, bookList[i].cPages);
-	}
+
+	generateAllCards();
 	updateInfo();
 }
 function clearCards() {
 	while(cardContainer.firstElementChild.tagName != "BUTTON") {
 		cardContainer.removeChild(cardContainer.firstElementChild);
+	}
+}
+function generateAllCards() {
+	for(let i=0; i<bookList.length; i++) {
+		cardGenerator(bookList[i].name, bookList[i].author, bookList[i].tPages, bookList[i].cPages);
 	}
 }
 
@@ -67,50 +68,66 @@ function cardGenerator(book, author, tPages, cPages) {
 	newCard.classList.add("card");
 
 
-	// 2. create content part 
-	let newCardContent = document.createElement("div");
-	newCard.appendChild(newCardContent);
-	newCardContent.classList.add("card-content");
+	newCard.innerHTML = `
+            <!-- content part -->
+            <div class="card-content">
+              <div class="book-name">${book}</div>
+              <div class="author-name">${author}</div>
+            </div>
+            <!-- footer part -->
+            <card class="card-footer">
+              <p class="footer-text">
+                <span class="read-pages">${cPages}</span
+                ><span class="total-pages">${tPages}</span>
+              </p>
+            </card>
+          `
 
 
-	// 3. create footer
-	let newCardFooter = document.createElement("div");
-	newCard.appendChild(newCardFooter);
-	newCardFooter.classList.add("card-footer");
+	// // 2. create content part 
+	// let newCardContent = document.createElement("div");
+	// newCard.appendChild(newCardContent);
+	// newCardContent.classList.add("card-content");
 
 
-	// 4. create book and author name section
-	let newCardBookName = document.createElement("div");
-	let newCardAuthorName = document.createElement("div");
-
-	// appending them inside card 
-	newCardContent.appendChild(newCardBookName);
-	newCardContent.appendChild(newCardAuthorName);
-
-	// adding class to book and author
-	newCardBookName.classList.add("book-name");
-	newCardAuthorName.classList.add("author-name");
+	// // 3. create footer
+	// let newCardFooter = document.createElement("div");
+	// newCard.appendChild(newCardFooter);
+	// newCardFooter.classList.add("card-footer");
 
 
-	// to update their value
-	newCardBookName.textContent = book;
-	newCardAuthorName.textContent = author;
+	// // 4. create book and author name section
+	// let newCardBookName = document.createElement("div");
+	// let newCardAuthorName = document.createElement("div");
 
-	// 5. creating total and completed pages
-	let newCardTotalPages = document.createElement("div");
-	let newCardCompletedPages = document.createElement("div");
+	// // appending them inside card 
+	// newCardContent.appendChild(newCardBookName);
+	// newCardContent.appendChild(newCardAuthorName);
 
-	// appending them inside footer
-	newCardFooter.appendChild(newCardCompletedPages);
-	newCardFooter.appendChild(newCardTotalPages);
+	// // adding class to book and author
+	// newCardBookName.classList.add("book-name");
+	// newCardAuthorName.classList.add("author-name");
 
-	// adding class
-	newCardTotalPages.classList.add("total-pages");
-	newCardCompletedPages.classList.add("read-pages");
 
-	// adding content
-	newCardTotalPages.textContent = tPages;
-	newCardCompletedPages.textContent = cPages;
+	// // to update their value
+	// newCardBookName.textContent = book;
+	// newCardAuthorName.textContent = author;
+
+	// // 5. creating total and completed pages
+	// let newCardTotalPages = document.createElement("div");
+	// let newCardCompletedPages = document.createElement("div");
+
+	// // appending them inside footer
+	// newCardFooter.appendChild(newCardCompletedPages);
+	// newCardFooter.appendChild(newCardTotalPages);
+
+	// // adding class
+	// newCardTotalPages.classList.add("total-pages");
+	// newCardCompletedPages.classList.add("read-pages");
+
+	// // adding content
+	// newCardTotalPages.textContent = tPages;
+	// newCardCompletedPages.textContent = cPages;
 }
 function updateInfo() {
 	info__numberOfBooks.textContent = bookList.length;
