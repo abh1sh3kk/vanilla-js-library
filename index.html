@@ -16,8 +16,10 @@
         <h1 class="addNewBook">Add New Book</h1>
       </div>
       <div class="form-content">
-        <div class="book label-input
-          <label for="bookName">Name of Book</label>
+        <div class="book label-input">
+
+          <!-- name of the book -->
+          <label for="bookName" >Name of Book</label>
           <input
             type="text"
             name="bookName"
@@ -26,6 +28,8 @@
             required
           />
         </div>
+
+        <!-- name of the author -->
         <div class="author label-input">
           <label for="author">Name of Author</label>
           <input
@@ -36,6 +40,8 @@
             required
           />
         </div>
+
+  
         <div class="pages-number-form">
           <div class="pages-total label-input">
             <label for="totalPages">Total no. of pages</label>
@@ -54,9 +60,11 @@
               name="pagesCompleted"
               id="pagesCompleted"
               class="input pagesCompleted"
+              required
             />
           </div>
         </div>
+        <div class="error-message">× <span class="specific-error">Form should be sexy</span></div>
       </div>
       <div class="form-footer">
         <div class="buttons">
@@ -75,7 +83,7 @@
     <div class="container">
       <div class="section-header">
         <h1 class="headline">LIBRARY</h1>
-        <button class="button signIn">Sign In</button>
+        <button class="button signIn generate-random-books">Random</button>
       </div>
 
       <div class="section-content">
@@ -124,7 +132,7 @@
           <div class="line line3"></div>
         </div>
         <div class="info-image">
-          <img src="images/dustbin.png" alt="dustbin" class="dustbin" />
+          <img src="images/dustbin.png" alt="dustbin icon" class="dustbin" />
           <div class="clear-all">Clear All</div>
         </div>
       </div>
