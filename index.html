@@ -12,10 +12,15 @@
     <!-- ##################### FORM #################################### -->
 
     <form class="formContainer" id="myForm">
+
+
       <div class="form-headline">
         <h1 class="addNewBook">Add New Book</h1>
       </div>
+
+
       <div class="form-content">
+
         <div class="book label-input">
 
           <!-- name of the book -->
@@ -29,6 +34,7 @@
           />
         </div>
 
+
         <!-- name of the author -->
         <div class="author label-input">
           <label for="author">Name of Author</label>
@@ -37,12 +43,14 @@
             name="authorName"
             id="authorName"
             class="input bookAuthor"
+            maxlength="30"
             required
           />
         </div>
 
   
         <div class="pages-number-form">
+
           <div class="pages-total label-input">
             <label for="totalPages">Total no. of pages</label>
             <input
@@ -53,6 +61,8 @@
               required
             />
           </div>
+
+
           <div class="completed-pages label-input">
             <label for="pagesCompleted">Pages completed</label>
             <input
@@ -63,19 +73,35 @@
               required
             />
           </div>
+
         </div>
+
+
         <div class="error-message">× <span class="specific-error">Form should be sexy</span></div>
+
       </div>
+
+
+
       <div class="form-footer">
+
         <div class="buttons">
+
           <button class="button submit form-button" type="submit">
             Submit
           </button>
-          <button class="button cancel form-button" type="cancel">
+
+          <button class="button cancel form-button" >
             Cancel
           </button>
+
         </div>
+
       </div>
+
+
+
+
     </form>
 
     <!-- ##################### FORM #################################### -->
