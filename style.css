@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Quicksand:wght@300&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Quicksand:wght@300&display=swap");
 
 :root {
-  --form-background-color: rgb(0,0,0,91%);
+  --form-background-color: rgb(0, 0, 0, 91%);
   --form-text-color: white;
   --form-button-background-color: #f04;
   --form-button-text-color: white;
@@ -11,15 +10,13 @@
 
   --main-background-color: black;
 
-  --card-background-color: #1E2757;
+  --card-background-color: #1e2757;
   --card-text-color: white;
   --card-border-color: black;
 
-  --card-footer-background-color: #EA0D5C;
-  --input-focus-border-color: #EA0D5C;
+  --card-footer-background-color: #ea0d5c;
+  --input-focus-border-color: #ea0d5c;
 }
-
-
 
 * {
   margin: 0px;
@@ -36,27 +33,24 @@
 body {
   background-color: var(--main-background-color);
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   height: 100vh;
 }
-
-
-
 
 /* ****************************** GRID SETUP ********************************************* */
 .container {
   display: grid;
   grid-template: repeat(8, 1fr) / repeat(4, 1fr);
-  
+
   grid-template-areas:
-  "header header header header"
-  "content content content info"
-  "content content content info"
-  "content content content info"
-  "content content content info"
-  "content content content info"
-  "content content content info"
-  "content content content info";
+    "header header header header"
+    "content content content info"
+    "content content content info"
+    "content content content info"
+    "content content content info"
+    "content content content info"
+    "content content content info"
+    "content content content info";
 }
 .section-header {
   grid-area: header;
@@ -70,43 +64,40 @@ body {
 
 .card-container {
   display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-	/* grid-template-rows: repeat(auto-fill, 1fr); */
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  /* grid-template-rows: repeat(auto-fill, 1fr); */
   justify-content: start;
   gap: 0.5rem;
 }
 /* ****************************** GRID SETUP END ********************************************* */
 
-
-
-
-
 /* ******************************** FORM ******************************************************* */
 .formContainer {
   visibility: hidden;
-  
-	position: absolute;
-	
-	background-color: var(--form-background-color);
-	color: var(--form-text-color);
-	
-	font-size: 1.4rem;
-  
-	height: auto;
-	width: 36vw;
-	margin: 25vh 32vw;
-	border-radius: 1.5rem;
+
+  position: absolute;
+
+  background-color: var(--form-background-color);
+  color: var(--form-text-color);
+
+  font-size: 1.4rem;
+
+  height: auto;
+  width: 36vw;
+  margin: 25vh 32vw;
+  border-radius: 1.5rem;
 
   z-index: 4;
-  
-	box-shadow: 0px 0px 5px black;
+
+  box-shadow: 0px 0px 5px black;
 }
 .pages-number-form {
   width: 100%;
   display: flex;
   justify-content: flex-start;
 }
-.form-headline, .form-footer{
+.form-headline,
+.form-footer {
   /* margin: 0.2rem 0 0.4rem 0; */
   background-color: rgb(0, 11, 67, 76%);
   padding: 0.5rem;
@@ -119,34 +110,34 @@ body {
 }
 .form-content {
   display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-around;
-  padding: 2.0rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
   font-size: 1.2rem;
 }
 .addNewBook {
   font-size: 2rem;
-	text-align: center;
+  text-align: center;
 }
 .label-input {
   display: flex;
   flex-direction: column;
   width: 100%;
-	margin: 0.5rem;
+  margin: 0.5rem;
 }
-input[type=number]::-webkit-inner-spin-button{
+input[type="number"]::-webkit-inner-spin-button {
   opacity: 0;
   color: red;
   font-size: 2rem;
 }
 .input {
   width: 60%;
-	padding: 0.4rem 0.4rem 0.2rem 0;
-	background-color: transparent;
+  padding: 0.4rem 0.4rem 0.2rem 0;
+  background-color: transparent;
   color: var(--form-text-color);
-	border: none;
-	border-bottom: 2px solid var(--form-text-color);
+  border: none;
+  border-bottom: 2px solid var(--form-text-color);
   margin-block: 0.4rem;
 }
 .input:focus {
@@ -159,8 +150,8 @@ input::-webkit-inner-spin-button {
     margin: 0; 
 } */
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 .error-message {
   visibility: hidden;
@@ -172,8 +163,8 @@ input[type=number] {
 
 .form-button {
   background-color: transparent;
-	color: var(--form-button-text-color);
-	margin: 0.6rem 0.2rem 0.4rem 0;
+  color: var(--form-button-text-color);
+  margin: 0.6rem 0.2rem 0.4rem 0;
   border: 1.5px solid white;
 }
 .buttons {
@@ -186,28 +177,20 @@ input[type=number] {
 }
 /* ******************************** FORM END ******************************************************* */
 
-
-
-
-
-                                /* MAIN CONTAINER */
-  .container {
+/* MAIN CONTAINER */
+.container {
   height: 100%;
-  }
-                                /* MAIN CONTAINER */
-
-
-
+}
+/* MAIN CONTAINER */
 
 /* ******************************** NAV BAR ******************************************************* */
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-  padding: 0 0.7rem;
-  background-color: #EA0D5C;
 
+  padding: 0 0.7rem;
+  background-color: #ea0d5c;
 }
 .headline {
   font-weight: bold;
@@ -240,26 +223,21 @@ button:active {
 }
 
 .section-info {
-  background-color: #1E2757;
+  background-color: #1e2757;
 }
 /* ******************************** NAV BAR END ******************************************************* */
 
-
-
-
-
 /* ******************************** CARDS  ******************************************************* */
 
-.section-content{
+.section-content {
   height: auto;
   background-color: white;
 }
 .card-container {
   width: 98%;
-	height: 100%;
+  height: 100%;
   overflow-y: auto;
 }
-
 
 /* ******************************** unit card   ******************************************************* */
 .card {
@@ -272,7 +250,7 @@ button:active {
   color: var(--card-text-color);
 
   /* height: clamp(14rem, 40%, 21rem); */
-  min-height: 16rem; 
+  min-height: 16rem;
   max-height: 20rem;
   min-width: 14rem;
   max-width: 15rem;
@@ -320,13 +298,11 @@ button:active {
   align-items: center;
 }
 .read-pages:after {
- content: "\a0";
+  content: "\a0";
 }
 .total-pages:before {
   content: "pages of\a0";
 }
-
-
 
 /* PLUS BUTTON */
 .addBook {
@@ -348,36 +324,13 @@ button:active {
   background-color: var(--card-background-color);
   color: var(--card-text-color);
 }
-.addBook:active, .cancel:active {
+.addBook:active,
+.cancel:active {
   transform: scale(0.9);
 }
 /* ******************************** unit card end   ******************************************************* */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ******************************** CARDS  ******************************************************* */
-
-
-
 
 /* ******************************** SIDEBAR  ******************************************************* */
 .section-info {
@@ -394,9 +347,9 @@ button:active {
 }
 .info-text {
   width: 90%;
-
 }
-.info-heading, .info-list>li {
+.info-heading,
+.info-list > li {
   margin-block: 1rem;
 }
 .info-image {
@@ -407,7 +360,7 @@ button:active {
   font-size: 1.2rem;
 }
 .dustbin {
-  height: 4.5rem; 
+  height: 4.5rem;
   transition: 0.2s ease-in-out;
 }
 .dustbin:hover {
@@ -423,9 +376,58 @@ button:active {
 }
 /* ******************************** SIDEBAR  ******************************************************* */
 
-
-
-
 @media screen and (max-width: 883px) {
-  
+  html {
+    overflow: hidden;
+  }
+  /* ****************************** GRID SETUP ********************************************* */
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "header header header header"
+      "content content content content"
+      "content content content content"
+      "content content content content"
+      "content content content content"
+      "info   info   info   info"
+      "info   info   info   info"
+      "info   info   info   info";
+      overflow: auto;
+  }
+  /* ****************************** GRID SETUP ********************************************* */
+
+  .section-info {
+    font-size: 1rem;
+    flex-direction: row;
+    border-bottom: 3px solid white;
+  }
+  .info-text {
+    width: 100%;
+    text-align: center;
+  }
+  .dustbin {
+    display: none;
+  }
+  .info-image {
+    text-align: none;
+    width: 50%;
+    margin-inline: 1rem;
+  }
+  .line {
+    display: none;
+  }
+  .clear-all {
+    font-size: 0.9rem;
+    border: 2px solid white;
+    border-radius: 1rem;
+    padding-block: 0.2rem;
+  }
+  .section-header {
+    padding: 0;
+    height: 4rem;
+  }
+  .headline {
+  font-size: 1.6rem;
+}
+
 }
