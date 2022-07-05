@@ -1,27 +1,36 @@
 // ***************************************************
-let generateBtn = document.querySelector(".generate-random-books");
-let plus = document.querySelector(".addBook"); 
-let form = document.querySelector(".formContainer");
-let cancelButton = document.querySelector(".cancel");
-let theForm = document.querySelector("form");
-let submitButton = document.querySelector(".submit");
-let bookName = document.querySelector(".bookName");
-let bookAuthor = document.querySelector(".bookAuthor");
-let totalPages = document.querySelector(".totalPages");
-let completedPages = document.querySelector(".pagesCompleted");
-let displayBookName = document.querySelector(".book-name");
-let card__readPages = document.querySelector(".read-pages");
-let card__totalPages = document.querySelector(".total-pages");
-let errorMessage_only = document.querySelector(".specific-error");
-let errorMessage_with_X = document.querySelector(".error-message");
-let dustbin = document.querySelector(".info-image");
-let info__numberOfBooks = document.querySelector(".numberOfBooks");
-let info__completedBooks = document.querySelector(".completedBooks");
-let info__remainingBooks = document.querySelector(".remainingBooks");
+const generateBtn = document.querySelector(".generate-random-books");
+
+
+const plus = document.querySelector(".addBook"); 
+const form = document.querySelector(".formContainer");
+const cancelButton = document.querySelector(".cancel");
+const theForm = document.querySelector("form");
+const submitButton = document.querySelector(".submit");
+
+
+const bookName = document.querySelector(".bookName");
+const bookAuthor = document.querySelector(".bookAuthor");
+const totalPages = document.querySelector(".totalPages");
+const completedPages = document.querySelector(".pagesCompleted");
+
+const cardContainer = document.querySelector(".card-container");
+const card__readPages = document.querySelector(".read-pages");
+const card__totalPages = document.querySelector(".total-pages");
+
+const errorMessage_with_X = document.querySelector(".error-message");
+const errorMessage_only = document.querySelector(".specific-error");
+
+const displayBookName = document.querySelector(".book-name");
+const dustbin = document.querySelector(".info-image");
+
+const info__numberOfBooks = document.querySelector(".numberOfBooks");
+const info__completedBooks = document.querySelector(".completedBooks");
+const info__remainingBooks = document.querySelector(".remainingBooks");
+
 let formData = new FormData(form);
-let cardContainer = document.querySelector(".card-container");
-let bookList = {};
-let readyMadeList = [{
+let bookList = [];
+const readyMadeList = [{
 		"name": "Organize your whiteboard", 
 		"author": "Narendra Bohora", 
 		"tPages": 99,
@@ -52,19 +61,25 @@ let readyMadeList = [{
 		"cPages": 41
 	},
 	
-]
-
-// **************** DRIVER CODES ********************************
-renderCards();
+];
 
 
 
+// ************************* HELPER FUNCTIONS **************************
 
-
-
-// ************************* FUNCTIONS **************************
-
-// Factory function
+function renderCards() {
+	// updateFromDatabase();
+	bookList = JSON.parse(localStorage.getItem("bookList"));
+	console.table("haha", bookList);
+	clearCards();
+	generateAllCards();
+	updateInfo();
+} renderCards();
+function updateFromDatabase(){
+	if (localStorage.getItem("bookList") === 'null') {
+		console.log("empty localstorage")
+	}
+}
 function book(name, author, tPages, cPages) {
 	return {
 		name,
@@ -73,32 +88,22 @@ function book(name, author, tPages, cPages) {
 		cPages
 	}
 }
-
-function renderCards() {
-	bookList = JSON.parse(localStorage.getItem("bookList"));
-	clearCards();
-	generateAllCards();
-	updateInfo();
-}
 function clearCards() {
 	while(cardContainer.firstElementChild.tagName != "BUTTON") {
 		cardContainer.removeChild(cardContainer.firstElementChild);
 	}
 }
-
 function generateAllCards() {
-	for(let i=0; i<bookList.length; i++) {
+	if(bookList == null) return;
+	for(let i = 0; i<bookList.length; i++) {
 		cardGenerator(bookList[i].name, bookList[i].author, bookList[i].tPages, bookList[i].cPages);
 	}
 }
-
 function cardGenerator(book, author, tPages, cPages) {
 
-	// 1. create a card 
 	let newCard = document.createElement("div");
 	cardContainer.insertBefore(newCard,plus);
 	newCard.classList.add("card");
-
 
 	newCard.innerHTML = `
             <!-- content part -->
@@ -114,82 +119,34 @@ function cardGenerator(book, author, tPages, cPages) {
               </p>
             </card>
           `
-
-
-	// // 2. create content part 
-	// let newCardContent = document.createElement("div");
-	// newCard.appendChild(newCardContent);
-	// newCardContent.classList.add("card-content");
-
-
-	// // 3. create footer
-	// let newCardFooter = document.createElement("div");
-	// newCard.appendChild(newCardFooter);
-	// newCardFooter.classList.add("card-footer");
-
-
-	// // 4. create book and author name section
-	// let newCardBookName = document.createElement("div");
-	// let newCardAuthorName = document.createElement("div");
-
-	// // appending them inside card 
-	// newCardContent.appendChild(newCardBookName);
-	// newCardContent.appendChild(newCardAuthorName);
-
-	// // adding class to book and author
-	// newCardBookName.classList.add("book-name");
-	// newCardAuthorName.classList.add("author-name");
-
-
-	// // to update their value
-	// newCardBookName.textContent = book;
-	// newCardAuthorName.textContent = author;
-
-	// // 5. creating total and completed pages
-	// let newCardTotalPages = document.createElement("div");
-	// let newCardCompletedPages = document.createElement("div");
-
-	// // appending them inside footer
-	// newCardFooter.appendChild(newCardCompletedPages);
-	// newCardFooter.appendChild(newCardTotalPages);
-
-	// // adding class
-	// newCardTotalPages.classList.add("total-pages");
-	// newCardCompletedPages.classList.add("read-pages");
-
-	// // adding content
-	// newCardTotalPages.textContent = tPages;
-	// newCardCompletedPages.textContent = cPages;
 }
 function updateInfo() {
+	if (bookList == null) return;
 	info__numberOfBooks.textContent = bookList.length;
 }	
-const showForm = () => {
+function showForm(){
 	form.style.visibility = "visible";
 };
-const hideForm = () => { 
+function hideForm(){ 
 	form.style.visibility = "hidden";
 	hideErrorMessage();
 }
-const removeAllBooks = () => {
+function removeAllBooks(){
 	bookList.length = 0;
-	localStorage.setItem("bookList", JSON.stringify(bookList));
+	localStorage.clear();
 }
-const clearAndRender = () => {
+function clearAndRender(){
 	removeAllBooks();
 	renderCards();
 }
-const showErrorMessage = () => {
+function showErrorMessage(){
 	errorMessage_with_X.style.visibility = "visible"; 
 }
-const hideErrorMessage = () => {
+function hideErrorMessage(){
 	errorMessage_with_X.style.display = "none"; 
 }
-const isFormValid = () => {
+function isFormValid(){
 	let isValid = true;
-
-
-
 
 	if (bookAuthor.value.length > 30) showErrorMessage();
 	if (+completedPages.value > +totalPages.value) {
@@ -197,16 +154,12 @@ const isFormValid = () => {
 		showErrorMessage();
 	}
 
-
-
-
-
 	return isValid;
 }
-const updateLocalStorage = () => {
+function updateLocalStorage(){
 	localStorage.setItem("bookList", JSON.stringify(bookList));
 }
-const updateDatabase = () => {
+function updateToDatabase(){
 	// creating book object
 	let bookObj = book(
 		bookName.value, 
@@ -218,18 +171,19 @@ const updateDatabase = () => {
 
 	updateLocalStorage();	
 }
-const handleForm = (e) => {
+function handleForm(e){
 	e.preventDefault();
 	
 	if (isFormValid()) { 
 		hideForm();
-		updateDatabase();
+		updateToDatabase();
 		renderCards();
 		updateInfo();
 	}	
 }
-const populateLibrary = () => {
-		bookList = readyMadeList;
+function populateLibrary(){
+		[... bookList] = [... readyMadeList];
+		console.table(bookList);
 		localStorage.setItem("bookList", JSON.stringify(bookList));
 		renderCards();
 }
