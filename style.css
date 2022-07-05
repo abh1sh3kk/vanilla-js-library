@@ -84,6 +84,7 @@ body {
 
   height: auto;
   width: 36vw;
+  min-width: 500px;
   margin: 25vh 32vw;
   border-radius: 1.5rem;
 
