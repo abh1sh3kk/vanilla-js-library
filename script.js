@@ -184,6 +184,9 @@ function populateLibrary(){
 		localStorage.setItem("bookList", JSON.stringify(bookList));
 		renderCards();
 }
+function handleShortcuts(e) {
+	if (e.key == 'Escape') hideForm();
+};
 
 // #################################### EVENT LISTENERS ##############################################
 
@@ -192,3 +195,4 @@ cancelButton.addEventListener("click", ()=> { hideForm() });
 dustbin.addEventListener("click", () => { clearAndRender() });
 theForm.addEventListener("submit", function(e) { handleForm(e) });
 generateBtn.addEventListener("click", ()=> { populateLibrary() });
+document.addEventListener('keydown', function(e) { handleShortcuts(e) });
