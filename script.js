@@ -3,13 +3,13 @@ const generateBtn = document.querySelector(".generate-random-books");
 
 
 const plus = document.querySelector(".addBook"); 
-const form = document.querySelector(".formContainer");
 const cancelButton = document.querySelector(".cancel");
-const theForm = document.querySelector("form");
 const submitButton = document.querySelector(".submit");
+const form = document.querySelector(".formContainer");
 
 
-const bookName = document.querySelector(".bookName");
+const theForm = document.querySelector("form");
+const bookName = document.getElementById("bookName");
 const bookAuthor = document.querySelector(".bookAuthor");
 const totalPages = document.querySelector(".totalPages");
 const completedPages = document.querySelector(".pagesCompleted");
@@ -124,6 +124,8 @@ function updateInfo() {
 }	
 function showForm(){
 	form.style.visibility = "visible";
+	bookName.focus();
+	theForm.reset();
 };
 function hideForm(){ 
 	form.style.visibility = "hidden";
@@ -186,7 +188,27 @@ function populateLibrary(){
 }
 function handleShortcuts(e) {
 	if (e.key == 'Escape') hideForm();
+	if (e.key == '.' && e.ctrlKey) showForm();
+
+
+	
 };
+function handleDoubleClick(e) {
+	if(e.target.classList.contains('card-content')) removeCard(e);
+
+}
+function removeCard(e){
+	let selectedBookName = e.target.firstElementChild.textContent;
+	let bookNameList = bookList.map(book => book.name);
+	let indexToDelete = bookNameList.indexOf(selectedBookName);
+
+	removeCardOfIndex(indexToDelete);
+}
+function removeCardOfIndex(indexToDelete) {
+	bookList.splice(indexToDelete, 1);
+	updateLocalStorage();
+	renderCards();
+}
 
 // #################################### EVENT LISTENERS ##############################################
 
@@ -196,3 +218,4 @@ dustbin.addEventListener("click", () => { clearAndRender() });
 theForm.addEventListener("submit", function(e) { handleForm(e) });
 generateBtn.addEventListener("click", ()=> { populateLibrary() });
 document.addEventListener('keydown', function(e) { handleShortcuts(e) });
+document.body.addEventListener('dblclick', function (e) {handleDoubleClick(e)});
