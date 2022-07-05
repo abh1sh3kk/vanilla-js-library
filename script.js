@@ -69,7 +69,6 @@ renderCards();
 
 function renderCards() {
 	bookList = JSON.parse(localStorage.getItem("bookList"));
-	console.table("haha", bookList);
 	clearCards();
 	generateAllCards();
 	updateInfo();
@@ -182,7 +181,6 @@ function handleForm(e){
 }
 function populateLibrary(){
 		[... bookList] = [... readyMadeList];
-		console.table(bookList);
 		localStorage.setItem("bookList", JSON.stringify(bookList));
 		renderCards();
 }
