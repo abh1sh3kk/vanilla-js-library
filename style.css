@@ -255,6 +255,8 @@ button:active {
   max-height: 20rem;
   min-width: 14rem;
   max-width: 15rem;
+  user-select: none;
+  cursor: pointer;
 
   /* height: minmax(16rem, 17rem);
   width: minmax(14rem, 15rem); */
