@@ -63,18 +63,17 @@ const readyMadeList = [{
 	
 ];
 
-
+renderCards();
 
 // ************************* HELPER FUNCTIONS **************************
 
 function renderCards() {
-	// updateFromDatabase();
 	bookList = JSON.parse(localStorage.getItem("bookList"));
 	console.table("haha", bookList);
 	clearCards();
 	generateAllCards();
 	updateInfo();
-} renderCards();
+};
 function updateFromDatabase(){
 	if (localStorage.getItem("bookList") === 'null') {
 		console.log("empty localstorage")
