@@ -73,7 +73,8 @@ body {
 
 /* ******************************** FORM ******************************************************* */
 .formContainer {
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none;
 
   position: absolute;
 

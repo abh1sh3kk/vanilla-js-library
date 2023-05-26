@@ -3,24 +3,28 @@ const generateBtn = document.querySelector(".generate-random-books");
 
 const plus = document.querySelector(".addBook");
 const cancelButton = document.querySelectorAll(".cancel");
-const submitButton = document.querySelector(".submit");
 const form = document.querySelectorAll(".formContainer");
 
-const theForm = document.querySelector("#myForm");
+const addForm = document.querySelector("#addForm");
+const addBookName = document.getElementById("addBookName");
+const addBookAuthor = document.querySelector(".addBookAuthor");
+const addTotalPages = document.querySelector(".addTotalPages");
+const addCompletedPages = document.querySelector(".addPagesCompleted");
+
 const editForm = document.querySelector("#editForm");
-const bookName = document.getElementById("bookName");
-const bookAuthor = document.querySelector(".bookAuthor");
-const totalPages = document.querySelector(".totalPages");
-const completedPages = document.querySelector(".pagesCompleted");
+const editBookName = document.getElementById("editBookName");
+const editBookAuthor = document.querySelector(".editBookAuthor");
+const editTotalPages = document.querySelector(".editTotalPages");
+const editCompletedPages = document.querySelector(".editPagesCompleted");
 
 const cardContainer = document.querySelector(".card-container");
 const card__readPages = document.querySelector(".read-pages");
-const card__totalPages = document.querySelector(".total-pages");
+const card__addTotalPages = document.querySelector(".total-pages");
 
 const errorMessage_with_X = document.querySelector(".error-message");
 const errorMessage_only = document.querySelector(".specific-error");
 
-const displayBookName = document.querySelector(".book-name");
+const bookTitle = document.querySelector(".book-name");
 const dustbin = document.querySelector(".info-image");
 
 const info__numberOfBooks = document.querySelector(".numberOfBooks");
@@ -123,18 +127,16 @@ function updateInfo() {
     info__numberOfBooks.textContent = bookList.length;
 }
 function showForm() {
-    theForm.style.visibility = "visible";
-    bookName.focus();
-    theForm.reset();
+    addForm.style.display = "block";
+    addBookName.focus();
+    addForm.reset();
 }
 function showEditForm() {
-    editForm.style.visibility = "visible";
-    bookName.focus();
-    theForm.reset();
+    editForm.style.display = "block";
 }
 function hideForm() {
     form.forEach((aForm) => {
-        aForm.style.visibility = "hidden";
+        aForm.style.display = "none";
     });
     hideErrorMessage();
 }
@@ -156,8 +158,8 @@ function hideErrorMessage() {
 function isFormValid() {
     let isValid = true;
 
-    if (bookAuthor.value.length > 30) showErrorMessage();
-    if (+completedPages.value > +totalPages.value) {
+    if (addBookAuthor.value.length > 30) showErrorMessage();
+    if (+addCompletedPages.value > +addTotalPages.value) {
         isValid = false;
         showErrorMessage();
     }
@@ -167,43 +169,29 @@ function isFormValid() {
 function updateLocalStorage() {
     localStorage.setItem("bookList", JSON.stringify(bookList));
 }
-function updateToDatabase(action) {
-    if (action === "create") {
-        // creating book object
-        let bookObj = book(
-            bookName.value,
-            bookAuthor.value,
-            totalPages.value,
-            completedPages.value
-        );
-        bookList.push(bookObj);
-    } else if (action === "edit") {
-    }
-
+function addToDatabase() {
+    // creating book object
+    let bookObj = book(
+        addBookName.value,
+        addBookAuthor.value,
+        addTotalPages.value,
+        addCompletedPages.value
+    );
+    bookList.push(bookObj);
     updateLocalStorage();
 }
+
 function handleAddBook(e) {
     e.preventDefault();
-    const ACTION = "create";
 
     if (isFormValid()) {
         hideForm();
-        updateToDatabase(ACTION);
+        addToDatabase();
         renderCards();
         updateInfo();
     }
 }
 
-function handleEditBook(e) {
-    e.preventDefault();
-    const ACTION = "edit";
-
-    if (isFormValid()) {
-        hideForm();
-        updateToDatabase(ACTION);
-        renderCards();
-    }
-}
 function populateLibrary() {
     [...bookList] = [...readyMadeList];
     localStorage.setItem("bookList", JSON.stringify(bookList));
@@ -215,6 +203,34 @@ function handleShortcuts(e) {
 }
 function handleDoubleClick(e) {
     if (e.target.classList.contains("card-content")) removeCard(e);
+}
+function handleEditForm(e) {
+    showEditForm();
+    editForm.addEventListener("submit", function (submitEvent) {
+        submitEvent.preventDefault();
+        handleEditBook(e);
+    });
+
+    function handleEditBook(editEvent) {
+        if (isFormValid()) {
+            hideForm();
+            editToDatabase(editEvent);
+            renderCards();
+        }
+    }
+    function editToDatabase(editEvent) {
+        // get form value
+        // find which one to edit
+        // update
+        // localstorage
+        console.log(
+            editBookName.value,
+            editBookAuthor.value,
+            editCompletedPages.value,
+            editTotalPages.value
+        );
+        console.log(editEvent);
+    }
 }
 function removeCard(e) {
     let selectedBookName = e.target.firstElementChild.textContent;
@@ -228,7 +244,7 @@ function removeCardOfIndex(indexToDelete) {
     updateLocalStorage();
     renderCards();
 }
-
+//
 // #################################### EVENT LISTENERS ##############################################
 
 cancelButton.forEach((button) => {
@@ -242,12 +258,10 @@ plus.addEventListener("click", () => {
 dustbin.addEventListener("click", () => {
     clearAndRender();
 });
-theForm.addEventListener("submit", function (e) {
+addForm.addEventListener("submit", function (e) {
     handleAddBook(e);
 });
-editForm.addEventListener("submit", function (e) {
-    handleEditBook(e);
-});
+
 generateBtn.addEventListener("click", () => {
     populateLibrary();
 });
@@ -257,6 +271,6 @@ document.addEventListener("keydown", function (e) {
 cardContainer.addEventListener("dblclick", function (e) {
     handleDoubleClick(e);
 });
-cardContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("card-content")) showEditForm();
+cardContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("book-name")) handleEditForm(e);
 });
