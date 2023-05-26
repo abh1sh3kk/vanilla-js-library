@@ -1,168 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    
-    <title>Library</title>
-  </head>
-  <body>
-    <!-- ##################### FORM #################################### -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
 
-    <form class="formContainer" id="myForm">
+        <title>Library</title>
+    </head>
+    <body>
+        <!-- ##################### FORM #################################### -->
 
+        <form class="formContainer" id="myForm">
+            <div class="form-headline">
+                <h1 class="addNewBook">Add New Book</h1>
+            </div>
 
-      <div class="form-headline">
-        <h1 class="addNewBook">Add New Book</h1>
-      </div>
+            <div class="form-content">
+                <div class="book label-input">
+                    <!-- name of the book -->
+                    <label for="bookName">Name of Book</label>
+                    <input
+                        type="text"
+                        name="bookName"
+                        id="bookName"
+                        class="input bookName"
+                        autocomplete="off"
+                        required
+                    />
+                </div>
 
+                <!-- name of the author -->
+                <div class="author label-input">
+                    <label for="author">Name of Author</label>
+                    <input
+                        type="text"
+                        name="authorName"
+                        id="authorName"
+                        class="input bookAuthor"
+                        maxlength="30"
+                        autocomplete="off"
+                        required
+                    />
+                </div>
 
-      <div class="form-content">
+                <div class="pages-number-form">
+                    <div class="pages-total label-input">
+                        <label for="totalPages">Total no. of pages</label>
+                        <input
+                            type="number"
+                            name="totalPages"
+                            id="totalPages"
+                            class="input totalPages"
+                            autocomplete="off"
+                            required
+                        />
+                    </div>
 
-        <div class="book label-input">
+                    <div class="completed-pages label-input">
+                        <label for="pagesCompleted">Pages completed</label>
+                        <input
+                            type="number"
+                            name="pagesCompleted"
+                            id="pagesCompleted"
+                            class="input pagesCompleted"
+                            autocomplete="off"
+                            required
+                        />
+                    </div>
+                </div>
 
-          <!-- name of the book -->
-          <label for="bookName" >Name of Book</label>
-          <input
-            type="text"
-            name="bookName"
-            id="bookName"
-            class="input bookName"
-            required
-          />
-        </div>
+                <div class="error-message">
+                    × <span class="specific-error">Form should be sexy</span>
+                </div>
+            </div>
 
+            <div class="form-footer">
+                <div class="buttons">
+                    <button class="button submit form-button" type="submit">Submit</button>
 
-        <!-- name of the author -->
-        <div class="author label-input">
-          <label for="author">Name of Author</label>
-          <input
-            type="text"
-            name="authorName"
-            id="authorName"
-            class="input bookAuthor"
-            maxlength="30"
-            required
-          />
-        </div>
+                    <button class="button cancel form-button">Cancel</button>
+                </div>
+            </div>
+        </form>
 
-  
-        <div class="pages-number-form">
+        <!-- ##################### FORM #################################### -->
 
-          <div class="pages-total label-input">
-            <label for="totalPages">Total no. of pages</label>
-            <input
-              type="number"
-              name="totalPages"
-              id="totalPages"
-              class="input totalPages"
-              required
-            />
-          </div>
+        <!-- ##################### Edit Form #################################### -->
 
+        <form class="formContainer" id="editForm">
+            <div class="form-headline">
+                <h1 class="addNewBook">Edit book</h1>
+            </div>
 
-          <div class="completed-pages label-input">
-            <label for="pagesCompleted">Pages completed</label>
-            <input
-              type="number"
-              name="pagesCompleted"
-              id="pagesCompleted"
-              class="input pagesCompleted"
-              required
-            />
-          </div>
+            <div class="form-content">
+                <div class="book label-input">
+                    <!-- name of the book -->
+                    <label for="bookName">Name of Book</label>
+                    <input
+                        type="text"
+                        name="bookName"
+                        id="bookName"
+                        class="input bookName"
+                        autocomplete="off"
+                        required
+                    />
+                </div>
 
-        </div>
+                <!-- name of the author -->
+                <div class="author label-input">
+                    <label for="author">Name of Author</label>
+                    <input
+                        type="text"
+                        name="authorName"
+                        id="authorName"
+                        class="input bookAuthor"
+                        maxlength="30"
+                        autocomplete="off"
+                        required
+                    />
+                </div>
 
+                <div class="pages-number-form">
+                    <div class="pages-total label-input">
+                        <label for="totalPages">Total no. of pages</label>
+                        <input
+                            type="number"
+                            name="totalPages"
+                            id="totalPages"
+                            class="input totalPages"
+                            autocomplete="off"
+                            required
+                        />
+                    </div>
 
-        <div class="error-message">× <span class="specific-error">Form should be sexy</span></div>
+                    <div class="completed-pages label-input">
+                        <label for="pagesCompleted">Pages completed</label>
+                        <input
+                            type="number"
+                            name="pagesCompleted"
+                            id="pagesCompleted"
+                            class="input pagesCompleted"
+                            autocomplete="off"
+                            required
+                        />
+                    </div>
+                </div>
 
-      </div>
+                <div class="error-message">
+                    × <span class="specific-error">Form should be sexy</span>
+                </div>
+            </div>
 
+            <div class="form-footer">
+                <div class="buttons">
+                    <button class="button submit form-button" type="submit">Submit</button>
 
+                    <button class="button cancel form-button">Cancel</button>
+                </div>
+            </div>
+        </form>
 
-      <div class="form-footer">
+        <!-- ##################### Edit Form #################################### -->
 
-        <div class="buttons">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="headline">LIBRARY</h1>
+                <button class="button signIn generate-random-books">Random</button>
+            </div>
 
-          <button class="button submit form-button" type="submit">
-            Submit
-          </button>
+            <div class="section-content">
+                <div class="card-container">
+                    <!-- cards -->
+                    <!-- https://pastebin.com/sAVLGBAG -->
 
-          <button class="button cancel form-button" >
-            Cancel
-          </button>
-
-        </div>
-
-      </div>
-
-
-
-
-    </form>
-
-    <!-- ##################### FORM #################################### -->
-
-    <div class="container">
-      <div class="section-header">
-        <h1 class="headline">LIBRARY</h1>
-        <button class="button signIn generate-random-books">Random</button>
-      </div>
-
-      <div class="section-content">
-        <div class="card-container">
-          <!-- cards -->
-          <!-- https://pastebin.com/sAVLGBAG -->
-
-          <!-- -------------- CARD 1 ------------------- -->
-          <div class="card1 card">
-            <!-- header part -->
-            <!-- <div class="card-header">
+                    <!-- -------------- CARD 1 ------------------- -->
+                    <div class="card1 card">
+                        <!-- header part -->
+                        <!-- <div class="card-header">
            <div class="edit">Edit</div>
            <div class="remove">Remove</div>
          </div> -->
-            <!-- content part -->
-            <div class="card-content">
-              <div class="book-name">Science book</div>
-              <div class="author-name">Abhishek Acharya</div>
+                        <!-- content part -->
+                        <div class="card-content">
+                            <div class="book-name">Science book</div>
+                            <div class="author-name">Abhishek Acharya</div>
+                        </div>
+                        <!-- footer part -->
+                        <card class="card-footer">
+                            <p class="footer-text">
+                                <span class="read-pages">34</span
+                                ><span class="total-pages">100</span>
+                            </p>
+                        </card>
+                    </div>
+                    <!-- -------------- CARD 1 ------------------- -->
+
+                    <!-- -------------- CARD + ------------------- -->
+                    <button class="button addBook card">+</button>
+                    <!-- -------------- CARD + ------------------- -->
+                </div>
             </div>
-            <!-- footer part -->
-            <card class="card-footer">
-              <p class="footer-text">
-                <span class="read-pages">34</span
-                ><span class="total-pages">100</span>
-              </p>
-            </card>
-          </div>
-          <!-- -------------- CARD 1 ------------------- -->
 
-          <!-- -------------- CARD + ------------------- -->
-          <button class="button addBook card">+</button>
-          <!-- -------------- CARD + ------------------- -->
+            <div class="section-info">
+                <div class="info-text">
+                    <div class="line line1"></div>
+                    <div class="info-heading">BOOK INFORMATION</div>
+                    <div class="line line2"></div>
+                    <ul class="info-list">
+                        <li>Number of books: <span class="numberOfBooks">0</span></li>
+                        <li>Books completed: <span class="completedBooks">0</span></li>
+                        <li>Books remaining: <span class="remainingBooks">0</span></li>
+                    </ul>
+                    <div class="line line3"></div>
+                </div>
+                <div class="info-image">
+                    <img src="images/dustbin.png" alt="dustbin icon" class="dustbin" />
+                    <div class="clear-all">Clear All</div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="section-info">
-        <div class="info-text">
-          <div class="line line1"></div>
-          <div class="info-heading">BOOK INFORMATION</div>
-          <div class="line line2"></div>
-          <ul class="info-list">
-            <li>Number of books: <span class="numberOfBooks">0</span></li>
-            <li>Books completed: <span class="completedBooks">0</span></li>
-            <li>Books remaining: <span class="remainingBooks">0</span></li>
-          </ul>
-          <div class="line line3"></div>
-        </div>
-        <div class="info-image">
-          <img src="images/dustbin.png" alt="dustbin icon" class="dustbin" />
-          <div class="clear-all">Clear All</div>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+        <script src="script.js"></script>
+    </body>
 </html>
