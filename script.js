@@ -27,6 +27,8 @@ const errorMessage_only = document.querySelector(".specific-error");
 const bookTitle = document.querySelector(".book-name");
 const dustbin = document.querySelector(".info-image");
 
+const suggestionModal = document.querySelector(".suggestion-modal");
+
 const info__numberOfBooks = document.querySelector(".numberOfBooks");
 const info__completedBooks = document.querySelector(".completedBooks");
 const info__remainingBooks = document.querySelector(".remainingBooks");
@@ -148,6 +150,13 @@ function showForm() {
     addBookName.focus();
     addForm.reset();
 }
+function showSuggestionModal() {
+    suggestionModal.style.display = "block";
+}
+function hideSuggestionModal() {
+    suggestionModal.style.display = "none";
+    console.log("should be hidden");
+}
 function hideForm() {
     form.forEach((aForm) => {
         aForm.style.display = "none";
@@ -214,7 +223,9 @@ function populateLibrary() {
 }
 function handleShortcuts(e) {
     if (e.key == "Escape") hideForm();
-    if (e.key == "." && e.ctrlKey) showForm();
+    if (e.key === "." && e.ctrlKey) showForm();
+    if (e.ctrlKey && e.altKey && e.key === "r") populateLibrary();
+    if (e.ctrlKey && e.altKey && e.key === "x") clearAndRender();
 }
 function handleDoubleClick(e) {
     if (e.target.classList.contains("card-content")) removeCard(e);
@@ -248,6 +259,9 @@ function handleEditForm(e) {
             renderCards();
         }
     }
+}
+function handleSuggestions(e) {
+    if (e.key == "/" && e.ctrlKey) showSuggestionModal();
 }
 
 function editToDatabase(indexToEdit) {
@@ -300,16 +314,23 @@ dustbin.addEventListener("click", () => {
 addForm.addEventListener("submit", function (e) {
     handleAddBook(e);
 });
-
 generateBtn.addEventListener("click", () => {
     populateLibrary();
-});
-document.addEventListener("keydown", function (e) {
-    handleShortcuts(e);
 });
 cardContainer.addEventListener("dblclick", function (e) {
     handleDoubleClick(e);
 });
 cardContainer.addEventListener("click", function (e) {
     if (e.target.classList.contains("book-name")) handleEditForm(e);
+});
+
+// #################################### Shortcuts ##############################################
+document.addEventListener("keydown", (e) => {
+    if (e.key == "/" && e.ctrlKey) showSuggestionModal();
+});
+document.addEventListener("keyup", (e) => {
+    if (e.key == "/" && e.ctrlKey) hideSuggestionModal();
+});
+document.addEventListener("keydown", function (e) {
+    handleShortcuts(e);
 });
