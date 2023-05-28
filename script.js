@@ -114,17 +114,29 @@ function cardGenerator(book, author, tPages, cPages) {
               <div class="author-name">${author}</div>
             </div>
             <!-- footer part -->
-            <card class="card-footer">
-              <p class="footer-text">
-                <span class="read-pages">${cPages}</span
-                ><span class="total-pages">${tPages}</span>
-              </p>
+            <card class="card-footer relative">
+                <p class="footer-text">
+                    <span class="read-pages" >${cPages}</span
+                    ><span class="total-pages">${tPages}</span>
+                </p>
             </card>
           `;
 }
+// ----------------- Plus and minus button ------------------------
+// <div class="control-container">
+//     <div class="plusPage">+</div>
+//     <div class="minusPage">-</div>
+// </div>
+// ----------------- Plus and minus button ------------------------
+
+function findCompletedBooks() {
+    return bookList?.filter((book) => book.tPages === book.cPages).length;
+}
 function updateInfo() {
-    if (bookList == null) return;
-    info__numberOfBooks.textContent = bookList.length;
+    info__numberOfBooks.textContent = bookList?.length || 0;
+    info__completedBooks.textContent = findCompletedBooks() || 0;
+    info__remainingBooks.textContent =
+        info__numberOfBooks.textContent - info__completedBooks.textContent || 0;
 }
 function showForm() {
     addForm.style.display = "block";
@@ -133,7 +145,16 @@ function showForm() {
 }
 function showEditForm() {
     editForm.style.display = "block";
+    editBookName.focus();
+    editForm.reset();
+    populateExistingFormData();
 }
+function populateExistingFormData() {
+    editBookName.setAttribute("value", "Abhishek");
+    let endPositionForCursor = editBookName.value?.length;
+    editBookName.setSelectionRange(endPositionForCursor, endPositionForCursor);
+}
+
 function hideForm() {
     form.forEach((aForm) => {
         aForm.style.display = "none";
@@ -219,19 +240,25 @@ function handleEditForm(e) {
         }
     }
     function editToDatabase(editEvent) {
-        // get form value
-        // find which one to edit
-        // update
-        // localstorage
-        console.log(
+        const selectedBookName = e.target.textContent;
+        const bookNameList = bookList.map((book) => book.name);
+        const indexToEdit = bookNameList.indexOf(selectedBookName);
+        const editedBookData = book(
             editBookName.value,
             editBookAuthor.value,
             editCompletedPages.value,
             editTotalPages.value
         );
-        console.log(editEvent);
+        editCardOfIndex(indexToEdit, editedBookData);
     }
 }
+
+function editCardOfIndex(indexToEdit, editedBookData) {
+    bookList.splice(indexToEdit, 1, editedBookData);
+    updateLocalStorage();
+    renderCards();
+}
+
 function removeCard(e) {
     let selectedBookName = e.target.firstElementChild.textContent;
     let bookNameList = bookList.map((book) => book.name);
@@ -248,7 +275,8 @@ function removeCardOfIndex(indexToDelete) {
 // #################################### EVENT LISTENERS ##############################################
 
 cancelButton.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
         hideForm();
     });
 });
