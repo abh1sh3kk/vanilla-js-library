@@ -143,18 +143,6 @@ function showForm() {
     addBookName.focus();
     addForm.reset();
 }
-function showEditForm() {
-    editForm.style.display = "block";
-    editBookName.focus();
-    editForm.reset();
-    populateExistingFormData();
-}
-function populateExistingFormData() {
-    editBookName.setAttribute("value", "Abhishek");
-    let endPositionForCursor = editBookName.value?.length;
-    editBookName.setSelectionRange(endPositionForCursor, endPositionForCursor);
-}
-
 function hideForm() {
     form.forEach((aForm) => {
         aForm.style.display = "none";
@@ -198,6 +186,7 @@ function addToDatabase() {
         addTotalPages.value,
         addCompletedPages.value
     );
+    if (!bookList) bookList = [];
     bookList.push(bookObj);
     updateLocalStorage();
 }
@@ -214,7 +203,7 @@ function handleAddBook(e) {
 }
 
 function populateLibrary() {
-    [...bookList] = [...readyMadeList];
+    [...bookList] = [...bookList, ...readyMadeList];
     localStorage.setItem("bookList", JSON.stringify(bookList));
     renderCards();
 }
@@ -225,32 +214,52 @@ function handleShortcuts(e) {
 function handleDoubleClick(e) {
     if (e.target.classList.contains("card-content")) removeCard(e);
 }
+
 function handleEditForm(e) {
     showEditForm();
+
     editForm.addEventListener("submit", function (submitEvent) {
         submitEvent.preventDefault();
-        handleEditBook(e);
+        handleEditBook(e.target.textContent);
     });
 
-    function handleEditBook(editEvent) {
+    function showEditForm() {
+        editForm.style.display = "block";
+        editBookName.focus();
+        editForm.reset();
+        populateExistingFormData();
+    }
+
+    function populateExistingFormData(e) {
+        editBookName.setAttribute("value", "Abhishek");
+        let endPositionForCursor = editBookName.value?.length;
+        editBookName.setSelectionRange(endPositionForCursor, endPositionForCursor);
+    }
+
+    function handleEditBook(bookName) {
         if (isFormValid()) {
             hideForm();
-            editToDatabase(editEvent);
+            editToDatabase(findBookIndex(e.target.textContent));
             renderCards();
         }
     }
-    function editToDatabase(editEvent) {
-        const selectedBookName = e.target.textContent;
-        const bookNameList = bookList.map((book) => book.name);
-        const indexToEdit = bookNameList.indexOf(selectedBookName);
-        const editedBookData = book(
-            editBookName.value,
-            editBookAuthor.value,
-            editCompletedPages.value,
-            editTotalPages.value
-        );
-        editCardOfIndex(indexToEdit, editedBookData);
-    }
+}
+
+function editToDatabase(indexToEdit) {
+    const editedBookData = book(
+        editBookName.value,
+        editBookAuthor.value,
+        editCompletedPages.value,
+        editTotalPages.value
+    );
+    editCardOfIndex(indexToEdit, editedBookData);
+}
+
+function findBookIndex(bookName) {
+    const bookNameList = bookList.map((book) => book.name);
+    const requiredIndex = bookNameList.indexOf(bookName);
+
+    return requiredIndex;
 }
 
 function editCardOfIndex(indexToEdit, editedBookData) {
@@ -260,10 +269,7 @@ function editCardOfIndex(indexToEdit, editedBookData) {
 }
 
 function removeCard(e) {
-    let selectedBookName = e.target.firstElementChild.textContent;
-    let bookNameList = bookList.map((book) => book.name);
-    let indexToDelete = bookNameList.indexOf(selectedBookName);
-
+    let indexToDelete = findBookIndex(e.target.firstElementChild.textContent);
     removeCardOfIndex(indexToDelete);
 }
 function removeCardOfIndex(indexToDelete) {

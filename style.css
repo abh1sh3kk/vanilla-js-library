@@ -449,6 +449,7 @@ button:active {
     }
 }
 
+/* ----------------- plus and minus feature ------------------ */
 .control-container {
     display: flex;
     justify-content: space-between;
@@ -467,6 +468,5 @@ button:active {
 }
 
 .minus {
-  outline: 2px solid blue;
-
+    outline: 2px solid blue;
 }
