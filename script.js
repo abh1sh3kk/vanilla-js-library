@@ -71,7 +71,12 @@ renderCards();
 // ************************* HELPER FUNCTIONS **************************
 
 function renderCards() {
-    bookList = JSON.parse(localStorage.getItem("bookList"));
+    const localStorageData = localStorage.getItem("bookList");
+    try {
+        bookList = JSON.parse(localStorageData);
+    } catch (e) {
+        console.log("Error parsing");
+    }
     clearCards();
     generateAllCards();
     updateInfo();
@@ -203,7 +208,7 @@ function handleAddBook(e) {
 }
 
 function populateLibrary() {
-    [...bookList] = [...bookList, ...readyMadeList];
+    [...bookList] = [...readyMadeList];
     localStorage.setItem("bookList", JSON.stringify(bookList));
     renderCards();
 }
