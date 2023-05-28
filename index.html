@@ -4,19 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="./Images/book.png" type="image/x-icon">
+        <link rel="shortcut icon" href="./Images/book.png" type="image/x-icon" />
         <link rel="stylesheet" href="style.css" />
 
         <title>Library</title>
     </head>
     <body>
-        <!-- ##################### suggestion modal #################################### -->
+        <!-- ##################### Suggestion Modal #################################### -->
         <div class="suggestion suggestion-modal">
             <div class="main-modal">
                 <h2 class="modal-heading">Shortcuts</h2>
                 <ul class="suggestion-list">
                     <li><span class="shortcuts">Esc</span> : Close the pop-ups.</li>
-                    <li><span class="shortcuts">Ctrl + Alt + R </span>: To populate with random books.</li>
+                    <li>
+                        <span class="shortcuts">Ctrl + Alt + R </span>: To populate with random
+                        books.
+                    </li>
                     <li><span class="shortcuts">Ctrl + Alt + X </span>: To delete all cards.</li>
                     <li><span class="shortcuts">Ctrl + . (dot) </span>: To insert a new card.</li>
                 </ul>
@@ -27,7 +30,7 @@
                 </ul>
             </div>
         </div>
-        <!-- ##################### suggestion modal #################################### -->
+        <!-- ##################### Suggestion Modal #################################### -->
 
         <!-- ##################### FORM #################################### -->
 
@@ -191,31 +194,6 @@
 
             <div class="section-content">
                 <div class="card-container">
-                    <!-- cards -->
-                    <!-- https://pastebin.com/sAVLGBAG -->
-
-                    <!-- -------------- CARD 1 ------------------- -->
-                    <div class="card1 card">
-                        <!-- header part -->
-                        <!-- <div class="card-header">
-           <div class="edit">Edit</div>
-           <div class="remove">Remove</div>
-         </div> -->
-                        <!-- content part -->
-                        <div class="card-content">
-                            <div class="book-name">Science book</div>
-                            <div class="author-name">Abhishek Acharya</div>
-                        </div>
-                        <!-- footer part -->
-                        <card class="card-footer">
-                            <p class="footer-text">
-                                <span class="read-pages">34</span
-                                ><span class="total-pages">100</span>
-                            </p>
-                        </card>
-                    </div>
-                    <!-- -------------- CARD 1 ------------------- -->
-
                     <!-- -------------- CARD + ------------------- -->
                     <button class="button addBook card">+</button>
                     <!-- -------------- CARD + ------------------- -->
@@ -237,6 +215,9 @@
                 <div class="info-image">
                     <img src="images/dustbin.png" alt="dustbin icon" class="dustbin" />
                     <div class="clear-all">Clear All</div>
+                </div>
+                <div class="info-suggestion">
+                    Hold <span class="shortcuts">`Ctrl + /`</span> to see suggestions.
                 </div>
             </div>
         </div>
